@@ -1,0 +1,23 @@
+ETAPA FINAL - CosLife (depende de integrar o app ao Capacitor)
+
+Itens reservados para esta etapa:
+
+1. BIOMETRIA
+   - Plugin: @aparajita/capacitor-biometric-auth (ou similar).
+   - Fluxo: ao abrir/desbloquear, pedir digital/rosto; o PIN continua como alternativa.
+   - Os dados continuam criptografados com o PIN (a biometria so libera a chave).
+
+2. NOTIFICACOES COM O APP FECHADO
+   - Plugin: @capacitor/local-notifications.
+   - Agendar no sistema: inicio de cada atividade e compromisso, pausas e fechamento do dia.
+   - Android 13+: permissao POST_NOTIFICATIONS. Android 12+: alarmes exatos (SCHEDULE_EXACT_ALARM).
+   - Reagendar sempre que o planejamento mudar (reencaixe, compromisso, arrastar).
+
+3. BACKUP EM ARQUIVO
+   - Plugins: @capacitor/filesystem + @capacitor/share.
+   - Exportar o backup (criptografado quando houver PIN) como arquivo e restaurar de arquivo.
+
+4. ACABAMENTO DO APK
+   - Icone e tela de abertura do CosLife (coelho Cosi).
+   - Assinatura de release (keystore) para instalar/atualizar e, se quiser, publicar na Play Store.
+   - Testar tudo no celular antes de gerar a versao final.
