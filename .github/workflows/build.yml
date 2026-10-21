@@ -17,6 +17,8 @@ jobs:
           java-version: 17
       - run: npm install
       - run: npx cap add android
+      - run: bash native/apply-native.sh
+      - run: npx capacitor-assets generate --android --iconBackgroundColor '#6750a4' --splashBackgroundColor '#6750a4'
       - run: npx cap sync android
       - run: |
           cd android
