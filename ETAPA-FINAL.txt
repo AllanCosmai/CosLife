@@ -1,23 +1,48 @@
-ETAPA FINAL - CosLife (depende de integrar o app ao Capacitor)
+ETAPA FINAL - CosLife (tudo depende do Capacitor / Android)
+===========================================================
 
-Itens reservados para esta etapa:
+STATUS: o codigo de todos os itens abaixo ja esta escrito neste pacote,
+mas AINDA NAO FOI TESTADO NO CELULAR. O que falta e: gerar o APK, instalar
+e testar. Siga o arquivo TUTORIAL-CAPACITOR.md.
 
-1. BIOMETRIA
-   - Plugin: @aparajita/capacitor-biometric-auth (ou similar).
-   - Fluxo: ao abrir/desbloquear, pedir digital/rosto; o PIN continua como alternativa.
-   - Os dados continuam criptografados com o PIN (a biometria so libera a chave).
+1. COSI FLUTUANTE (por cima de outros apps, com a tela desbloqueada)
+   [x] Parte nativa em Android (escrita em Java, que o Capacitor ja usa):
+       native/CosiNativePlugin.java  -> ponte entre o app e o Android
+       native/CosiOverlayService.java -> desenha o Cosi sobre os outros apps
+   [x] Permissao "Exibir sobre outros apps": o app abre a tela de configuracao
+       do Android; voce ativa uma unica vez.
+   [x] Servico em segundo plano com a notificacao fixa "Cosi esta ativo"
+       (obrigatoria no Android; tem botao "Parar").
+   [x] Reaproveita o desenho animado atual: www/cosi-overlay.html usa o mesmo
+       boneco do app (andar, dormir, humor, arrastar com toque longo).
+   [ ] PENDENTE: testar num celular real (parte mais incerta).
+   Obs.: some sozinho enquanto o CosLife esta aberto, para nao haver dois Cosis.
 
-2. NOTIFICACOES COM O APP FECHADO
-   - Plugin: @capacitor/local-notifications.
-   - Agendar no sistema: inicio de cada atividade e compromisso, pausas e fechamento do dia.
-   - Android 13+: permissao POST_NOTIFICATIONS. Android 12+: alarmes exatos (SCHEDULE_EXACT_ALARM).
-   - Reagendar sempre que o planejamento mudar (reencaixe, compromisso, arrastar).
+2. BIOMETRIA
+   [x] Digital/rosto para entrar. O PIN fica guardado no Keystore do Android,
+       liberado so pela biometria (nada de PIN em texto puro).
+   [ ] PENDENTE: testar no celular.
 
-3. BACKUP EM ARQUIVO
-   - Plugins: @capacitor/filesystem + @capacitor/share.
-   - Exportar o backup (criptografado quando houver PIN) como arquivo e restaurar de arquivo.
+3. NOTIFICACOES COM O APP FECHADO
+   [x] @capacitor/local-notifications agenda no sistema as atividades,
+       compromissos e tarefas dos proximos 7 dias (ate 60 lembretes).
+   [x] Android 13+: permissao de notificacoes. Android 12+: alarmes exatos.
+   [ ] PENDENTE: testar no celular e liberar o app na economia de bateria.
 
-4. ACABAMENTO DO APK
-   - Icone e tela de abertura do CosLife (coelho Cosi).
-   - Assinatura de release (keystore) para instalar/atualizar e, se quiser, publicar na Play Store.
-   - Testar tudo no celular antes de gerar a versao final.
+4. BACKUP EM ARQUIVO
+   [x] Exportar: gera coslife-backup-AAAA-MM-DD.json e abre o menu de
+       compartilhar (salvar no Drive, WhatsApp, e-mail...). Restaurar: escolher o arquivo.
+   [ ] PENDENTE: testar no celular.
+
+5. ACABAMENTO
+   [x] Icone do Cosi (coelho com cachecol azul e o nome "Cosi") e tela de
+       abertura: pasta assets/ (gerados automaticamente no build).
+   [ ] Assinatura de release (keystore) para publicar na Play Store.
+   [ ] Teste final de tudo no celular.
+
+LIMITES CONHECIDOS
+ - iPhone nao permite o Cosi flutuante.
+ - Xiaomi/Samsung/Huawei podem matar o servico: libere o CosLife na bateria.
+ - O Cosi flutuante nao aparece sobre a tela de bloqueio.
+ - O codigo nativo nao foi compilado ainda: o primeiro build pode apontar
+   erros simples para corrigirmos juntos.

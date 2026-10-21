@@ -1,17 +1,5 @@
-CosLife - como gerar o APK
+CosLife - pacote do app (Capacitor)
 
-COMO GERAR O APK (sem instalar nada no computador)
-
-1. Crie uma conta gratuita em github.com e clique em "New repository".
-   Nome: minha-rotina. Deixe como Private se quiser.
-2. Na pagina do repositorio, clique em "uploading an existing file"
-   e arraste TODO o conteudo desta pasta (incluindo a pasta .github e a pasta www).
-   Clique em "Commit changes".
-3. Abra a aba "Actions". Clique em "Gerar APK" e depois em "Run workflow".
-4. Espere uns 5 a 10 minutos. Quando ficar verde, abra a execucao
-   e baixe o arquivo "minha-rotina-apk" (em Artifacts).
-5. Descompacte, envie o app-debug.apk para o celular e instale
-   (o Android pede para permitir "instalar de fontes desconhecidas").
-
-Os dados ficam salvos no proprio aparelho.
-Para alterar o app no futuro, troque o arquivo www/index.html e repita o passo 3.
+Leia primeiro: TUTORIAL-CAPACITOR.md (passo a passo completo)
+Status do que falta e limites: ETAPA-FINAL.txt
+Icone do app (coelho Cosi com cachecol azul): ICONE-CosLife.png e pasta assets/
